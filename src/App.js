@@ -9,7 +9,7 @@ import 'react-mde/lib/styles/css/react-mde-all.css';
 
 export default function App() {
     const [notes, setNotes] = React.useState(
-        () => JSON.parse(localStorage.getItem('notes')) || []
+        () => JSON.parse(localStorage.getItem('notes')) || [] // lazy state
     );
     const [currentNoteId, setCurrentNoteId] = React.useState(
         (notes[0] && notes[0].id) || ''
@@ -17,6 +17,7 @@ export default function App() {
 
     React.useEffect(() => {
         localStorage.setItem('notes', JSON.stringify(notes));
+        // console.log(JSON.stringify(notes[0].body).split('\\n')[0]);
     }, [notes]);
 
     function createNewNote() {
